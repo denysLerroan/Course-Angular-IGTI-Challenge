@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { registerLocaleData } from '@angular/common';
@@ -11,16 +11,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { SenatorsListComponent } from './senators-list/senators-list.component';
+import { SenatorsDetailsComponent } from './senators-details/senators-details.component';
 
 registerLocaleData(localePt);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SenatorsListComponent, SenatorsDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClient,
+    HttpClientModule,
     MatToolbarModule,
     MatListModule,
     MatTableModule,
