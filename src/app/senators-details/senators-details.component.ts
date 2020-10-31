@@ -18,5 +18,15 @@ export class SenatorsDetailsComponent implements OnInit {
     private expensesService: SenatorsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap) => {
+      const id = parseInt(paramMap.get('id'));
+      this.expensesService
+        .retrieveSenatorExpenses(id)
+        .subscribe((senatorExpenses) => {
+          this.senatorsName = senatorExpenses.name;
+          this.expenses = senatorExpenses.despesas;
+        });
+    });
+  }
 }
