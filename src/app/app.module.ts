@@ -13,11 +13,17 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { SenatorsListComponent } from './senators-list/senators-list.component';
 import { SenatorsDetailsComponent } from './senators-details/senators-details.component';
+import { DescTipoPipe } from './desc-tipo.pipe';
 
 registerLocaleData(localePt);
 
 @NgModule({
-  declarations: [AppComponent, SenatorsListComponent, SenatorsDetailsComponent],
+  declarations: [
+    AppComponent,
+    SenatorsListComponent,
+    SenatorsDetailsComponent,
+    DescTipoPipe,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

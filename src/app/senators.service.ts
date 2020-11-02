@@ -28,4 +28,7 @@ export class SenatorsService {
   retrieveSenatorExpenses(id: number) {
     return this.http.get<SenatorExpenses>(`${urlBase}/despesasSenadores/${id}`);
   }
+  formataTipo(tipo: number): string {
+    return types[tipo];
+  }
 }

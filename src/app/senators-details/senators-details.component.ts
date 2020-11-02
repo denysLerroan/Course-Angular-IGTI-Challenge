@@ -11,7 +11,7 @@ import { SenatorsService } from '../senators.service';
 export class SenatorsDetailsComponent implements OnInit {
   senatorsName: string = '';
   expenses: Expenses[] = [];
-  expensesByType: { type: number; total: number }[] = [];
+  expensesByType: { tipo: number; total: number }[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +26,22 @@ export class SenatorsDetailsComponent implements OnInit {
         .subscribe((senatorExpenses) => {
           this.senatorsName = senatorExpenses.name;
           this.expenses = senatorExpenses.despesas;
+          this.expensesByType = expensesByTypeCalculation(this.expenses);
         });
     });
   }
+  calculaTotal(): number {
+    return this.expensesByType.reduce((total, item) => total + item.total, 0);
+  }
+}
+
+function expensesByTypeCalculation(despesas: Expenses[]) {
+  let result: { tipo: number; total: number }[] = [];
+  for (let i = 1; i <= 7; i++) {
+    const valorTotal = despesas
+      .filter((d) => d.tipo === i)
+      .reduce((total, despesa) => total + despesa.valor, 0);
+    result[i - 1] = { tipo: i, total: valorTotal };
+  }
+  return result;
 }
